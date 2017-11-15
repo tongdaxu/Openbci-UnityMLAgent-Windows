@@ -1,38 +1,14 @@
-<img src="images/unity-wide.png" align="middle" width="3000"/>
+# OpenBCI's connection with Unity ML - Agents (Beta) Learning Environment Version Alpha 1.0
 
-# Unity ML - Agents (Beta)
+The Platform composed a tailered version of OpenBCI SDK and a matched Unity learning environment,
+Tested with windows 7 and windows 10,
+WIP project, for details, please refer to: https://www.xutongda.com/openhappiness
+Collobration project by the Street Observers.
 
-**Unity Machine Learning Agents** allows researchers and developers to
-create games and simulations using the Unity Editor which serve as
-environments where intelligent agents can be trained using
-reinforcement learning, neuroevolution, or other machine learning
-methods through a simple-to-use Python API. For more information, see
-the [documentation page](docs).
+Connecting the OpenBCI Platform with Unity Machine Learning Platform,
+Please confirm the path of python folder: C:\Git\ml-agents\python
+With the path of OpenBCI Folder: \Processing\OpenBCI_Processing-master\OpenBCI_GUI
 
-For a walkthrough on how to train an agent in one of the provided
-example environments, start
-[here](docs/Getting-Started-with-Balance-Ball.md).
+For the original Unity ML Environment: https://github.com/Unity-Technologies/ml-agents/issues/142
+For the original OpenBCI Environment: https://github.com/OpenBCI/OpenBCI_GUI
 
-## Features
-* Unity Engine flexibility and simplicity
-* Multiple observations (cameras)
-* Flexible Multi-agent support
-* Discrete and continuous action spaces
-* Python (2 and 3) control interface
-* Visualizing network outputs in environment
-* Tensorflow Sharp Agent Embedding _[Experimental]_
-
-## Creating an Environment
-
-The _Agents SDK_, including example environment scenes is located in
-`unity-environment` folder. For requirements, instructions, and other
-information, see the contained Readme and the relevant
-[documentation](docs/Making-a-new-Unity-Environment.md).
-
-## Training your Agents
-
-Once you've built a Unity Environment, example Reinforcement Learning
-algorithms and the Python API are available in the `python`
-folder. For requirements, instructions, and other information, see the
-contained Readme and the relevant
-[documentation](docs/Unity-Agents---Python-API.md).
