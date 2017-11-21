@@ -8,9 +8,13 @@ public class XuAgent : Agent
 {
     [Header("Specific to Ball3D")]
 
-    public GameObject ball;
+    
 	private float alphaValue;
 	private float Hue;
+	private float Sat;
+	private float Val;
+
+
 	private float oldalphaValue;
 	private float alphaTemp1;
 	private float alphaTemp2;
@@ -27,7 +31,9 @@ public class XuAgent : Agent
         List<float> state = new List<float>();
 
         state.Add (Hue);
-		state.Add (alphaValue);
+		state.Add (Sat);
+		state.Add (Val);
+		state.Add (alphaValue/100f);
 
         return state;
     }
@@ -35,27 +41,74 @@ public class XuAgent : Agent
     // to be implemented by the developer
     public override void AgentStep(float[] act)
     {
-	
-        float action_h = act[0];
-		alphaValue = TextReadToFloat();
-
-		//Debug.Log (alphaValue);
-			
 		Renderer rend = GetComponent<Renderer>();
-		    if (action_h + Hue > 1.0f)
+
+
+			alphaValue = TextReadToFloat ();
+	
+
+		Debug.Log (alphaValue);
+
+					
+		float action_h = act[0];
+
+		    if (action_h/500 + Hue > 1.0f)
             {
-			Hue = 1.0f;
+			//Hue = 0.99f;
+			done = true;
+			reward = -0.2f;
 			}
 
-			if (action_h +Hue < 0f)
+			if (action_h/500 +Hue < 0f)
             {
-			Hue = 0f;
+			//Hue = 0.01f;
+			done = true;
+			reward = -0.2f;
             }
             else
             {
-			Hue = Hue + action_h;
+			Hue = Hue + action_h/500;
             }
 
+		float action_s = act[1];
+
+		if (action_s/500 + Sat > 1.0f)
+		{
+			//Sat = 0.99f;
+			done = true;
+			reward = -0.2f;
+		}
+
+		if (action_s/500 +Sat < 0f)
+		{
+			//Sat = 0.01f;
+			done = true;
+			reward = -0.2f;
+		}
+		else
+		{
+			Sat = Sat + action_s/500;
+		}
+
+		float action_v = act[2];
+
+		if (action_v/500 + Val > 1.0f)
+		{
+			//Val = 0.99f;
+			done = true;
+			reward = -0.2f;
+		}
+
+		if (action_v/500 +Val < 0f)
+		{
+			//Val = 0.01f;
+			done = true;
+			reward = -0.2f;
+		}
+		else
+		{
+			Val = Val + action_v/500;
+		}
 
 
             if (done == false)
@@ -63,15 +116,16 @@ public class XuAgent : Agent
                 reward = 0.1f;
             }
    
-		if ((alphaValue - oldalphaValue) < -1)
+		if ((alphaValue/oldalphaValue) > 1.1f )
         {
             done = true;
             reward = -1f;
         }
+
 		oldalphaValue = alphaValue;
 
 		rend.material.shader = Shader.Find("Specular");
-		rend.material.SetColor ("_Color", Color.HSVToRGB (Hue, 1f, 1f));
+		rend.material.SetColor ("_Color", Color.HSVToRGB (Hue, Sat, Val));
 
     }
 
@@ -79,7 +133,9 @@ public class XuAgent : Agent
     public override void AgentReset()
     {
 		alphaValue = TextReadToFloat ();
-		Hue = Random.Range(0f,1f);
+		Hue = Random.Range(0.01f,0.99f);
+		Sat = Random.Range(0.01f,0.99f);
+		Val = Random.Range(0.01f,0.99f);
         
     }
 
@@ -123,18 +179,23 @@ public class XuAgent : Agent
 		}
 
 */
-		try{
-		string lines = System.IO.File.ReadAllText (@"C:\Git\ml-agents\unity-environment\Assets\ML-Agents\Alphawave\AlphaRecord.txt");
-		//string[] sArray = lines.Split ('/');
-		//int lineNumber = System.Text.RegularExpressions.Regex.Matches (lines, "/").Count;
-		float tempFloat = float.Parse (lines);
-		return tempFloat;
-		}
+		float readvalue;
 
-		catch(IOException ){
-		return oldalphaValue;
-			Debug.Log("Read failed");
 
+			try {
+				string lines = System.IO.File.ReadAllText (@"C:\Git\ml-agents\unity-environment\Assets\ML-Agents\Alphawave\AlphaRecord.txt");
+				//string[] sArray = lines.Split ('/');
+				//int lineNumber = System.Text.RegularExpressions.Regex.Matches (lines, "/").Count;
+				readvalue = float.Parse (lines);
+			return readvalue;
+		
+			} catch (IOException) {
+			
+			Debug.Log ("Read failed");
+
+			
+			return oldalphaValue;
+		
 		}
 
 	}
