@@ -48,7 +48,10 @@ public class XuAgent : Agent
 	
 
 		Debug.Log (alphaValue);
-
+		//random test
+		float action_h_R = Random.Range(0.01f,0.99f);
+		float action_s_R = Random.Range(0.01f,0.99f);
+		float action_v_R = Random.Range(0.01f,0.99f);
 					
 		float action_h = act[0];
 
@@ -56,18 +59,18 @@ public class XuAgent : Agent
             {
 			//Hue = 0.99f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
 			}
 
 			if (action_h/500 +Hue < 0f)
             {
 			//Hue = 0.01f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
             }
             else
             {
-			Hue = Hue + action_h/500;
+			Hue = Hue + action_h_R/500;
             }
 
 		float action_s = act[1];
@@ -76,18 +79,18 @@ public class XuAgent : Agent
 		{
 			//Sat = 0.99f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
 		}
 
 		if (action_s/500 +Sat < 0f)
 		{
 			//Sat = 0.01f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
 		}
 		else
 		{
-			Sat = Sat + action_s/500;
+			Sat = Sat + action_s_R/500;
 		}
 
 		float action_v = act[2];
@@ -96,18 +99,18 @@ public class XuAgent : Agent
 		{
 			//Val = 0.99f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
 		}
 
 		if (action_v/500 +Val < 0f)
 		{
 			//Val = 0.01f;
 			done = true;
-			reward = -0.2f;
+			reward = -0.1f;
 		}
 		else
 		{
-			Val = Val + action_v/500;
+			Val = Val + action_v_R/500;
 		}
 
 
