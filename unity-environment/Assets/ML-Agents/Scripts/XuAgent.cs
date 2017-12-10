@@ -70,8 +70,13 @@ public class XuAgent : Agent
             }
             else
             {
-			Hue = Hue + action_h_R/500;
-            }
+			if (action_h_R > 0.5f) {
+				Hue = Hue + 0.01f;
+			}
+			else{
+				Hue = Hue - 0.01f;
+			}
+			}
 
 		float action_s = act[1];
 
@@ -90,7 +95,13 @@ public class XuAgent : Agent
 		}
 		else
 		{
-			Sat = Sat + action_s_R/500;
+			//Sat = Sat + action_s_R/500;
+			if (action_h_R > 0.5f) {
+				Sat = Sat + 0.01f;
+			}
+			else{
+				Sat = Sat - 0.01f;
+			}
 		}
 
 		float action_v = act[2];
@@ -110,7 +121,13 @@ public class XuAgent : Agent
 		}
 		else
 		{
-			Val = Val + action_v_R/500;
+			//Val = Val + action_v_R/500;
+			if (action_v_R > 0.5f) {
+				Val = Val + 0.01f;
+			}
+			else{
+				Val = Val - 0.01f;
+			}
 		}
 
 

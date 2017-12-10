@@ -1,5 +1,14 @@
+/*
+Fork and modified from the Original version
+For communication between unity3D ML agent
+by Xu Tongda
 
+Subdue to original license
 
+Use it as you like
+
+Follows the original headers: 
+*/
 ///////////////////////////////////////////////
 //
 // GUI for controlling the ADS1299-based OpenBCI
